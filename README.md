@@ -7,7 +7,8 @@ Codes permanents : __CAPA02010500__, __GABL21040500__, __ALLS24060500__, __NEVO2
 ### Ce projet est fait __PAR__ des étudiants, __POUR__ des étudiants.
 
 ## Description du projet
-Ce projet permet aux entreprises de partager leur bons plans à destination des étudiants. Ces offres seront disponibles sur une carte intéractive permettant aux étudiants d'économiser près de chez eux.
+StuDiscover est une plateforme qui permet aux entreprises partenaires de se connecter avec des étudiants disposant d’un compte. Les entreprises peuvent publier des offres d’emploi, des contrats, des stages, ainsi que des promotions ou des produits/services réservés aux étudiants. Les partenaires vont des recruteurs à la recherche de talents (emploi, alternance, stage) aux commerces locaux ou grandes enseignes qui proposent des avantages sur plusieurs produits : réductions, offres spéciales, accès à des services (cinéma, librairie, supermarché, etc.).
+La plateforme facilite la rencontre entre les besoins des entreprises et les attentes du quotidien étudiant, pour rendre la vie pro comme perso plus riche et avantageuse.
 
 ## Pages du site Web
 - Accueil
