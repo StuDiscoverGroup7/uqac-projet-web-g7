@@ -1,4 +1,4 @@
-![Logo StuDiscover](images/logoLong.png)
+![Logo StuDiscover](img/logoLong.png)
 
 # Projet Web du Groupe 7<br>
 Professeur : __Damien Brun__<br>
@@ -24,4 +24,4 @@ Backend : __NodeJS 25.2.1__<br>
 Gestion de projet : __GitHub__ et __Discord__
 
 ## Flow chart du projet
-![Flow chart](images/flow.png)
+![Flow chart](img/flow.png)
