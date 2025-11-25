@@ -1,0 +1,9 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+#stuDiscoverIntro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
