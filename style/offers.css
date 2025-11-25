@@ -1,0 +1,92 @@
+#map {
+    background: red;
+}
+
+#mapController {
+    height: 100%;
+    width: 100%;
+}
+
+#offersList {
+    background: rgb(181, 181, 181);
+    display: flex;
+    flex-direction: column;
+}
+
+#offersList h2 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background: white;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#offersList ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#offersList ul li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 180ms cubic-bezier(.2,.8,.2,1), box-shadow 180ms cubic-bezier(.2,.8,.2,1);
+    will-change: transform, box-shadow;
+    transform-origin: center top;
+    cursor: default;
+}
+
+#offersList ul li:hover{
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+}
+
+#offersList ul li h4{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+.offerSection{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 100vh;
+}
+
+.offerType {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offerType h3{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.offerType h4{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#jobOffer {
+    background: rgb(31, 0, 236);
+}
+
+#promo {
+    background: rgb(236, 0, 0);
+}
+
+#offersList ul li p{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
