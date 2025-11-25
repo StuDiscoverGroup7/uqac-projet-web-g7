@@ -18,8 +18,14 @@ const sendFile = (file) => (_req, res) =>
 
 const PLACEHOLDER_MESSAGE = "Cette page arrive bientôt.";
 
-app.get("/", sendFile("index.html"));
-app.get("/offers", sendFile("offers.html"));
+app.get("/", (_req, res) => {
+  res.render("index");
+});
+
+app.get("/offers", (_req, res) => {
+  res.render("offers");
+});
+
 app.get("/example", sendFile("example.html"));
 
 app.get("/qui-sommes-nous", (_req, res) => {

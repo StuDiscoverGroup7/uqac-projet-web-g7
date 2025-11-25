@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studiscover - Accueil</title>
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/offers.css">
+    <title>StuDiscover - Offres</title>
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/offers.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <%- include('partials/header') %>
     <main>
         <article class="offerSection">
             <section id="map">
@@ -32,7 +33,7 @@
                             <hr>
                             <h4>330 boul. Tablot</h4>
                         </div>
-                        <p>Le restaurant Au Bon Gougnier, niché au cœur du Vieux‑Québec, est une adresse aussi chaleureuse qu’intrigante. Spécialisé dans la viande de dière (une coupe fictive tendre et persillée), il propose une cuisson unique « à la gougnière »</p>
+                        <p>Le restaurant Au Bon Gougnier, niché au cœur du Vieux‑Québec, est une adresse aussi chaleureuse qu'intrigante. Spécialisé dans la viande de dière (une coupe fictive tendre et persillée), il propose une cuisson unique « à la gougnière »</p>
                     </li>
                     <li>
                         <div>
@@ -43,7 +44,7 @@
                             <hr>
                             <h4>1550 boul. Tablot</h4>
                         </div>
-                        <p>Nichée au cœur du Vieux-Québec, à deux pas des fortifications et du Château Frontenac, la librairie Chez Tremblay est bien plus qu’un simple commerce : c’est un véritable sanctuaire pour les amoureux des livres.</p>
+                        <p>Nichée au cœur du Vieux-Québec, à deux pas des fortifications et du Château Frontenac, la librairie Chez Tremblay est bien plus qu'un simple commerce : c'est un véritable sanctuaire pour les amoureux des livres.</p>
                     </li>
                 </ul>
             </section>
@@ -84,3 +85,4 @@
     </script>
 </body>
 </html>
+
