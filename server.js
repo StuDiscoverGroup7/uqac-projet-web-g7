@@ -16,6 +16,8 @@ app.use(express.static(rootDir));
 const sendFile = (file) => (_req, res) =>
   res.sendFile(path.join(rootDir, file));
 
+const PLACEHOLDER_MESSAGE = "Cette page arrive bientôt.";
+
 app.get("/", sendFile("index.html"));
 app.get("/offers", sendFile("offers.html"));
 app.get("/example", sendFile("example.html"));
@@ -24,7 +26,7 @@ app.get("/qui-sommes-nous", (_req, res) => {
   res.render("placeholder", {
     pageTitle: "StuDiscover - Qui sommes-nous ?",
     title: "Qui sommes-nous ?",
-    message: "Cette page arrive bientôt.",
+    message: PLACEHOLDER_MESSAGE,
   });
 });
 
@@ -32,7 +34,7 @@ app.get("/nos-partenaires", (_req, res) => {
   res.render("placeholder", {
     pageTitle: "StuDiscover - Nos partenaires",
     title: "Nos partenaires",
-    message: "Patience ! Nous finalisons la liste complète des entreprises et commerces partenaires.",
+    message: PLACEHOLDER_MESSAGE,
   });
 });
 
@@ -40,11 +42,10 @@ app.use((_req, res) => {
   res.status(404).render("placeholder", {
     pageTitle: "Page introuvable - StuDiscover",
     title: "Page introuvable",
-    message: "Désolé, cette page n'existe pas encore sur StuDiscover.",
+    message: PLACEHOLDER_MESSAGE,
   });
 });
 
 app.listen(PORT, () => {
   console.log(`StuDiscover server ready on http://localhost:${PORT}`);
 });
-
