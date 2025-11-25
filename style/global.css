@@ -1,6 +1,7 @@
-html, body {
-    margin: 0; /* Removes default margin */
-    padding: 0; /* Removes default padding */
+html,
+body {
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
 }
 
 html {
@@ -10,11 +11,40 @@ body {
   min-height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, ul, p {
-    margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p {
+  margin: 0;
 }
 
 header {
-    height: 10vh;
-    background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 10vh;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+header img {
+  height: 48px;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #111827;
+  font-weight: 600;
 }
