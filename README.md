@@ -15,3 +15,6 @@ Ce projet permet aux entreprises de partager leur bons plans à destination des 
 - Nos partenaires
 - Termes et conditions
 - Nous contacter
+
+## Flow chart du projet
+![Flow chart](images/flow.png)
