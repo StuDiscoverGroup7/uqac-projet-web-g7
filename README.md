@@ -1,6 +1,6 @@
 ![Logo StuDiscover](images/logoLong.png)
 
-Projet Web du Groupe 7<br>
+# Projet Web du Groupe 7<br>
 Professeur : __Damien Brun__<br>
 Étudiants : __Adrien Capdeville__, __Léo Gaborit__, __Samuel Allizard__, __Oscar Neveux__, __Thibault Martin__<br>
 Codes permanents : __CAPA02010500__, __GABL21040500__, __ALLS24060500__, __NEVO29060500__, __MART28070500__
