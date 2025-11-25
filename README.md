@@ -19,8 +19,8 @@ La plateforme facilite la rencontre entre les besoins des entreprises et les att
 - Nous contacter
 
 ## Technologies utilisées
-Frontend : __HTML__, __CSS__, __JS__<br>
-Backend : __NodeJS__<br>
+Frontend : __HTML5__, __CSS3__, __JS__<br>
+Backend : __NodeJS 25.2.1__<br>
 Gestion de projet : __GitHub__ et __Discord__
 
 ## Flow chart du projet
