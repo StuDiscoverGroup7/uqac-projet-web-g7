@@ -6,7 +6,12 @@
       <li><a href="/qui-sommes-nous">Qui sommes nous ?</a></li>
       <li><a href="/offers">Offres</a></li>
       <li><a href="/nos-partenaires">Nos partenaires</a></li>
+      <% if (currentUserId) { %>
+      <li><a href="/logout">Déconnexion</a></li>
+      <% } else { %>
+      <li><a href="/login">Connexion</a></li>
+      <li><a href="/register">Inscription</a></li>
+      <% } %>
     </ul>
   </nav>
 </header>
-

@@ -49,4 +49,17 @@ header nav a {
   font-weight: 600;
 }
 
+header nav a[href="/login"],
+header nav a[href="/register"],
+header nav a[href="/logout"] {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background: #f3f4f6;
+  transition: background 0.2s;
+}
 
+header nav a[href="/login"]:hover,
+header nav a[href="/register"]:hover,
+header nav a[href="/logout"]:hover {
+  background: #e5e7eb;
+}
