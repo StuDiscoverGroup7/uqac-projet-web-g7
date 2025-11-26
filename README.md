@@ -24,8 +24,9 @@ La plateforme facilite la rencontre entre les besoins des entreprises et les att
 
 ## Technologies utilisées
 
-Frontend : **HTML5**, **CSS3**, **JS**<br>
-Backend : **NodeJS 25.2.1**<br>
+Frontend : **HTML5**, **CSS3**, **JS**, **EJS**<br>
+Backend : **NodeJS 25.2.1**, **Express**, **Prisma**<br>
+Base de données : **PostgreSQL 16** (Docker)<br>
 Gestion de projet : **GitHub** et **Discord**
 
 ## Flow chart du projet
@@ -77,3 +78,48 @@ npm run dev
 ```
 
 Le serveur sera accessible sur `http://localhost:3000`
+
+## Base de données
+
+### Modèles Prisma
+
+Le projet utilise Prisma comme ORM pour gérer la base de données PostgreSQL.
+
+#### Modèle User
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+### Commandes Prisma utiles
+
+Générer le client Prisma après modification du schéma :
+
+```bash
+npx prisma generate
+```
+
+Créer une nouvelle migration :
+
+```bash
+npx prisma migrate dev --name nom_de_la_migration
+```
+
+Ouvrir l'interface graphique de la base de données :
+
+```bash
+npx prisma studio
+```
+
+Réinitialiser la base de données :
+
+```bash
+npx prisma migrate reset
+```
