@@ -20,7 +20,12 @@
   },
   "homepage": "https://github.com/StuDiscoverGroup7/uqac-projet-web-g7#readme",
   "dependencies": {
+    "@prisma/client": "^7.0.1",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "prisma": "^7.0.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
   }
 }
