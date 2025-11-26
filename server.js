@@ -138,13 +138,10 @@ app.post("/login", async (req, res) => {
 
 app.get("/example", sendFile("example.html"));
 
-app.get("/qui-sommes-nous", (_req, res) => {
-  res.render("placeholder", {
-    pageTitle: "StuDiscover - Qui sommes-nous ?",
-    title: "Qui sommes-nous ?",
-    message: PLACEHOLDER_MESSAGE,
-  });
+app.get("/qui-sommes-nous", (req, res) => {
+    res.render("qui-sommes-nous");
 });
+
 
 app.get("/nos-partenaires", (_req, res) => {
   res.render("placeholder", {
