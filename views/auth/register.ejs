@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription - StuDiscover</title>
+    <link rel="stylesheet" href="/style/global.css" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <section>
+        <h2>Créer un compte</h2>
+        <% if (error) { %>
+        <p><%= error %></p>
+        <% } %>
+        <form method="post" action="/register">
+          <label>
+            Nom
+            <input type="text" name="name" value="<%= values.name || '' %>" />
+          </label>
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              required
+              value="<%= values.email || '' %>"
+            />
+          </label>
+          <label>
+            Mot de passe
+            <input type="password" name="password" required />
+          </label>
+          <button type="submit" class="btn-primary">Créer mon compte</button>
+        </form>
+        <p>Déjà inscrit ? <a href="/login">Se connecter</a></p>
+      </section>
+    </main>
+  </body>
+</html>

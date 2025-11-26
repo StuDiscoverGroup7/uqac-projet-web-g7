@@ -42,6 +42,14 @@ app.get("/offers", (_req, res) => {
   res.render("offers");
 });
 
+app.get("/register", (_req, res) => {
+  res.render("auth/register", { error: null, values: {} });
+});
+
+app.get("/login", (_req, res) => {
+  res.render("auth/login", { error: null, values: {} });
+});
+
 app.get("/example", sendFile("example.html"));
 
 app.get("/qui-sommes-nous", (_req, res) => {

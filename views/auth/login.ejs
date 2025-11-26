@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion StuDiscover</title>
+    <link rel="stylesheet" href="/style/global.css" />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <section>
+        <h2>Connexion</h2>
+        <% if (error) { %>
+        <p><%= error %></p>
+        <% } %>
+        <form method="post" action="/login">
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              required
+              value="<%= values.email || '' %>"
+            />
+          </label>
+          <label>
+            Mot de passe
+            <input type="password" name="password" required />
+          </label>
+          <button type="submit" class="btn-primary">Se connecter</button>
+        </form>
+        <p>Pas encore de compte ? <a href="/register">Créer un compte</a></p>
+      </section>
+    </main>
+  </body>
+</html>
