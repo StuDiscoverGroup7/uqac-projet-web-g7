@@ -1,13 +1,29 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const rootDir = __dirname;
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 160000000, // 1 day session
+    },
+  })
+);
+app.use(express.urlencoded({ extended: true }));
 app.use("/style", express.static(path.join(__dirname, "style")));
 app.use("/img", express.static(path.join(__dirname, "img")));
 app.use("/js", express.static(path.join(__dirname, "js")));
