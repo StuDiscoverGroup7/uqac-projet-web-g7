@@ -11,11 +11,39 @@
 
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen">
 
     <%- include('partials/header') %>
 
     <main class="flex-grow">
+
+        <section class="bg-white py-10 px-4 text-center font-sans border-b border-gray-100">
+            <div class="max-w-2xl mx-auto">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">
+                    Nos Partenaires
+                </h1>
+                <p class="text-base md:text-lg text-gray-600 leading-relaxed">
+                    Découvrez les organisations qui nous soutiennent pour vous offrir le meilleur.
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-gray-100 py-10 px-4">
+
+            <div class="container mx-auto max-w-6xl">
+                <div class="bg-white block max-w-sm border border-gray-200 rounded-xl shadow overflow-hidden mx-auto">
+                    <a href="#" class="block bg-white">
+                        <img class="w-full h-32 object-contain p-4" src="/img/desjardins-logo.png" alt="Desjardins" />
+                    </a>
+                    <div class="p-6 text-center border-t border-gray-100">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">Desjardins</h5>
+                        <p class="text-gray-600 text-sm">Solutions financières pour étudiant</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
     </main>
 
 </body>
