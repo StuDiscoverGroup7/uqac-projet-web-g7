@@ -144,11 +144,7 @@ app.get("/qui-sommes-nous", (req, res) => {
 
 
 app.get("/nos-partenaires", (_req, res) => {
-  res.render("placeholder", {
-    pageTitle: "StuDiscover - Nos partenaires",
-    title: "Nos partenaires",
-    message: PLACEHOLDER_MESSAGE,
-  });
+  res.render("nos-partenaires");
 });
 
 app.use((_req, res) => {
