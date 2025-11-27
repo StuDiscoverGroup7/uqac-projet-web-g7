@@ -36,6 +36,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// Middleware pour vérifier l'authentification
+const requireAuth = (req, res, next) => {
+  if (!req.session?.userId) {
+    return res.redirect("/login");
+  }
+  next();
+};
+
 const sendFile = (file) => (_req, res) =>
   res.sendFile(path.join(rootDir, file));
 
@@ -51,8 +59,38 @@ app.get("/", (_req, res) => {
   res.render("index");
 });
 
-app.get("/offers", (_req, res) => {
-  res.render("offers");
+app.get("/offers", async (req, res) => {
+  const { error, success } = req.query;
+  const offers = await prisma.offer.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+  res.render("offers", { offers, error, success });
+});
+
+app.post("/offers", requireAuth, async (req, res) => {
+  const { title, type, address, description, latitude, longitude } = req.body;
+  const userId = req.session.userId;
+
+  if (!title || !type || !address || !description || !latitude || !longitude) {
+    return res.redirect("/offers?error=Tous les champs sont obligatoires");
+  }
+
+  try {
+    await prisma.offer.create({
+      data: {
+        title,
+        type,
+        address,
+        description,
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude),
+        userId,
+      },
+    });
+    res.redirect("/offers?success=Offre créée avec succès");
+  } catch (err) {
+    res.redirect("/offers?error=Une erreur est survenue lors de la création");
+  }
 });
 
 app.get("/register", (_req, res) => {
@@ -138,10 +176,11 @@ app.post("/login", async (req, res) => {
 
 app.get("/example", sendFile("example.html"));
 
-app.get("/qui-sommes-nous", (req, res) => {
-    res.render("qui-sommes-nous");
-});
+app.get("/test-form", sendFile("test-form.html"));
 
+app.get("/qui-sommes-nous", (req, res) => {
+  res.render("qui-sommes-nous");
+});
 
 app.get("/nos-partenaires", (_req, res) => {
   res.render("placeholder", {
