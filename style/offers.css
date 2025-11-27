@@ -78,11 +78,11 @@
     border-radius: 10px;
 }
 
-#jobOffer {
+.jobOffer {
     background: rgb(31, 0, 236);
 }
 
-#promo {
+.promo {
     background: rgb(236, 0, 0);
 }
 
