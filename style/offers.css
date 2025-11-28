@@ -90,3 +90,23 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
+
+#popupInspection {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popupInspection > div {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+>>>>>>> 5d0b890af0717c478086daa2b33a874576dbacfa
+}
