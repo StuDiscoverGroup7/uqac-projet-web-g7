@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modifier une offre - StuDiscover</title>
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h1>Modifier l'offre</h1>
+      <% if (error) { %>
+        <div class="error-message"><%= error %></div>
+      <% } %>
+      <form action="/offers/<%= offer.id %>" method="POST">
+        <div>
+          <label>Title:</label>
+          <input type="text" name="title" value="<%= offer.title %>" required />
+        </div>
+        <div>
+          <label>Type:</label>
+          <input type="text" name="type" value="<%= offer.type %>" required />
+        </div>
+        <div>
+          <label>Address:</label>
+          <input type="text" name="address" value="<%= offer.address %>" required />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea name="description" required><%= offer.description %></textarea>
+        </div>
+        <div>
+          <label>Latitude:</label>
+          <input
+            type="number"
+            step="any"
+            name="latitude"
+            value="<%= offer.latitude %>"
+            required
+          />
+        </div>
+        <div>
+          <label>Longitude:</label>
+          <input
+            type="number"
+            step="any"
+            name="longitude"
+            value="<%= offer.longitude %>"
+            required
+          />
+        </div>
+        <button type="submit">Modifier l'offre</button>
+        <a href="/offers">Annuler</a>
+      </form>
+    </main>
+  </body>
+</html>
+

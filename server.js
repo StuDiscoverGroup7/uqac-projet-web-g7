@@ -93,6 +93,71 @@ app.post("/offers", requireAuth, async (req, res) => {
   }
 });
 
+// GET /offers/:id/edit - Formulaire d'édition
+app.get("/offers/:id/edit", requireAuth, async (req, res) => {
+  const { error } = req.query;
+  const offer = await prisma.offer.findUnique({
+    where: { id: parseInt(req.params.id) },
+  });
+
+  if (!offer) {
+    return res.redirect("/offers?error=Offre introuvable");
+  }
+
+  if (offer.userId !== req.session.userId) {
+    return res.redirect(
+      "/offers?error=Vous n'avez pas le droit de modifier cette offre"
+    );
+  }
+
+  res.render("offers/edit", { offer, error });
+});
+
+// POST /offers/:id - Mettre à jour une offre
+app.post("/offers/:id", requireAuth, async (req, res) => {
+  const { title, type, address, description, latitude, longitude } = req.body;
+
+  if (!title || !type || !address || !description || !latitude || !longitude) {
+    return res.redirect(
+      `/offers/${req.params.id}/edit?error=Tous les champs sont obligatoires`
+    );
+  }
+
+  try {
+    const offer = await prisma.offer.findUnique({
+      where: { id: parseInt(req.params.id) },
+    });
+
+    if (!offer) {
+      return res.redirect("/offers?error=Offre introuvable");
+    }
+
+    if (offer.userId !== req.session.userId) {
+      return res.redirect(
+        "/offers?error=Vous n'avez pas le droit de modifier cette offre"
+      );
+    }
+
+    await prisma.offer.update({
+      where: { id: parseInt(req.params.id) },
+      data: {
+        title,
+        type,
+        address,
+        description,
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude),
+      },
+    });
+
+    res.redirect("/offers?success=Offre modifiée avec succès");
+  } catch (err) {
+    res.redirect(
+      `/offers/${req.params.id}/edit?error=Une erreur est survenue lors de la modification`
+    );
+  }
+});
+
 app.get("/register", (_req, res) => {
   res.render("auth/register", { error: null, values: {} });
 });
@@ -177,6 +242,8 @@ app.post("/login", async (req, res) => {
 app.get("/example", sendFile("example.html"));
 
 app.get("/test-form", sendFile("test-form.html"));
+
+app.get("/test-form-edit", sendFile("test-form-edit.html"));
 
 app.get("/qui-sommes-nous", (req, res) => {
   res.render("qui-sommes-nous");
