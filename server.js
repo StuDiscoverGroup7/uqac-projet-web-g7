@@ -67,6 +67,60 @@ app.get("/offers", async (req, res) => {
   res.render("offers", { offers, error, success });
 });
 
+// GET /offers/search - Rechercher des offres dans un rayon (PostGIS)
+app.get("/offers/search", async (req, res) => {
+  const { lat, lng, radius = 5000 } = req.query;
+  if (!lat || !lng) {
+    return res.status(400).json({
+      error: "Les paramètres lat et lng sont requis",
+    });
+  }
+
+  const latitude = parseFloat(lat);
+  const longitude = parseFloat(lng);
+  const radiusMeters = parseFloat(radius);
+
+  if (isNaN(latitude) || isNaN(longitude) || isNaN(radiusMeters)) {
+    return res.status(400).json({
+      error: "Les paramètres doivent être des nombres valides",
+    });
+  }
+
+  try {
+    const offers = await prisma.$queryRaw`
+      SELECT 
+        id,
+        title,
+        type,
+        address,
+        description,
+        latitude,
+        longitude,
+        "userId",
+        "createdAt",
+        "updatedAt",
+        ST_Distance(
+          ST_MakePoint(longitude, latitude)::geography,
+          ST_MakePoint(${longitude}, ${latitude})::geography
+        ) AS distance
+      FROM "Offer"
+      WHERE ST_DWithin(
+        ST_MakePoint(longitude, latitude)::geography,
+        ST_MakePoint(${longitude}, ${latitude})::geography,
+        ${radiusMeters}
+      )
+      ORDER BY distance ASC
+    `;
+
+    res.json({ offers });
+  } catch (err) {
+    console.error("Erreur lors de la recherche d'offres:", err);
+    res.status(500).json({
+      error: "Une erreur est survenue lors de la recherche",
+    });
+  }
+});
+
 // GET /my-offers - Offres de l'utilisateur connecté
 app.get("/my-offers", requireAuth, async (req, res) => {
   const { error, success } = req.query;
