@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes offres - StuDiscover</title>
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/my-offers.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h1>Mes offres</h1>
+      <% if (error) { %>
+      <div class="error-message"><%= error %></div>
+      <% } %> <% if (success) { %>
+      <div class="success-message"><%= success %></div>
+      <% } %> <% if (offers.length === 0) { %>
+      <p class="no-offers">Vous n'avez pas encore créé d'offres.</p>
+      <a href="/offers/create" class="create-link">Créer une offre</a>
+      <% } else { %>
+      <div class="offers-grid">
+        <% offers.forEach(offer => { %>
+        <div class="offer-card">
+          <div class="offer-header">
+            <h3><%= offer.title %></h3>
+            <span
+              class="offer-type <%= offer.type === 'job' ? 'jobOffer' : 'promo' %>"
+            >
+              <%= offer.type %>
+            </span>
+          </div>
+          <div class="offer-body">
+            <p class="offer-address"><%= offer.address %></p>
+            <p class="offer-description"><%= offer.description %></p>
+          </div>
+          <div class="offer-footer">
+            <a href="/offers/<%= offer.id %>/edit" class="btn-edit">Modifier</a>
+            <a href="/offers/<%= offer.id %>/delete" class="btn-delete"
+              >Supprimer</a
+            >
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <% } %>
+    </main>
+  </body>
+</html>

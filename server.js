@@ -67,6 +67,16 @@ app.get("/offers", async (req, res) => {
   res.render("offers", { offers, error, success });
 });
 
+// GET /my-offers - Offres de l'utilisateur connecté
+app.get("/my-offers", requireAuth, async (req, res) => {
+  const { error, success } = req.query;
+  const offers = await prisma.offer.findMany({
+    where: { userId: req.session.userId },
+    orderBy: { createdAt: "desc" },
+  });
+  res.render("offers/my-offers", { offers, error, success });
+});
+
 // GET /offers/create - Formulaire de création
 app.get("/offers/create", requireAuth, async (req, res) => {
   const { error } = req.query;
