@@ -67,12 +67,20 @@ app.get("/offers", async (req, res) => {
   res.render("offers", { offers, error, success });
 });
 
+// GET /offers/create - Formulaire de création
+app.get("/offers/create", requireAuth, async (req, res) => {
+  const { error } = req.query;
+  res.render("offers/create", { error });
+});
+
 app.post("/offers", requireAuth, async (req, res) => {
   const { title, type, address, description, latitude, longitude } = req.body;
   const userId = req.session.userId;
 
   if (!title || !type || !address || !description || !latitude || !longitude) {
-    return res.redirect("/offers?error=Tous les champs sont obligatoires");
+    return res.redirect(
+      "/offers/create?error=Tous les champs sont obligatoires"
+    );
   }
 
   try {
@@ -89,7 +97,9 @@ app.post("/offers", requireAuth, async (req, res) => {
     });
     res.redirect("/offers?success=Offre créée avec succès");
   } catch (err) {
-    res.redirect("/offers?error=Une erreur est survenue lors de la création");
+    res.redirect(
+      "/offers/create?error=Une erreur est survenue lors de la création"
+    );
   }
 });
 
