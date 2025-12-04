@@ -158,6 +158,56 @@ app.post("/offers/:id", requireAuth, async (req, res) => {
   }
 });
 
+// GET /offers/:id/delete - Page de confirmation de suppression
+app.get("/offers/:id/delete", requireAuth, async (req, res) => {
+  const { error } = req.query;
+  const offer = await prisma.offer.findUnique({
+    where: { id: parseInt(req.params.id) },
+  });
+
+  if (!offer) {
+    return res.redirect("/offers?error=Offre introuvable");
+  }
+
+  if (offer.userId !== req.session.userId) {
+    return res.redirect(
+      "/offers?error=Vous n'avez pas le droit de supprimer cette offre"
+    );
+  }
+
+  res.render("offers/delete", { offer, error });
+});
+
+// POST /offers/:id/delete - Supprimer une offre
+app.post("/offers/:id/delete", requireAuth, async (req, res) => {
+  try {
+    const offer = await prisma.offer.findUnique({
+      where: { id: parseInt(req.params.id) },
+    });
+
+    if (!offer) {
+      return res.redirect("/offers?error=Offre introuvable");
+    }
+
+    if (offer.userId !== req.session.userId) {
+      return res.redirect(
+        "/offers?error=Vous n'avez pas le droit de supprimer cette offre"
+      );
+    }
+
+    await prisma.offer.delete({
+      where: { id: parseInt(req.params.id) },
+    });
+
+    res.redirect("/offers?success=Offre supprimée avec succès");
+  } catch (err) {
+    console.error("Erreur suppression offre:", err);
+    res.redirect(
+      "/offers?error=Une erreur est survenue lors de la suppression"
+    );
+  }
+});
+
 app.get("/register", (_req, res) => {
   res.render("auth/register", { error: null, values: {} });
 });

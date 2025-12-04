@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supprimer une offre - StuDiscover</title>
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <main>
+      <h1>Supprimer l'offre</h1>
+      <% if (error) { %>
+        <div class="error-message"><%= error %></div>
+      <% } %>
+      <p>Êtes-vous sûr de vouloir supprimer l'offre "<%= offer.title %>" ?</p>
+      <p>Cette action est irréversible.</p>
+      <form action="/offers/<%= offer.id %>/delete" method="POST">
+        <button type="submit">Confirmer la suppression</button>
+        <a href="/offers">Annuler</a>
+      </form>
+    </main>
+  </body>
+</html>
+
