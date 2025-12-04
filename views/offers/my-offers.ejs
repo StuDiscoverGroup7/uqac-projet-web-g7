@@ -16,7 +16,16 @@
   <body>
     <%- include('../partials/header') %>
     <main>
-      <h1>Mes offres</h1>
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h1 style="margin: 0">Mes offres</h1>
+        <a href="/offers/create">+ Créer une offre</a>
+      </div>
       <% if (error) { %>
       <div class="error-message"><%= error %></div>
       <% } %> <% if (success) { %>
