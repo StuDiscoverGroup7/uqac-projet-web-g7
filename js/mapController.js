@@ -3,14 +3,19 @@ function closePopup() {
   $("#popupInspection").remove();
 }
 
-// map controller
-const map = L.map("mapController").setView([46.8139, -71.208], 13);
+// vue par défaut : Canada entier
+const map = L.map("mapController").setView([56, -106], 4);
+window.map = map;
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
+
+setTimeout(() => {
+  map.invalidateSize();
+}, 100);
 
 jsonTest = [
   {
