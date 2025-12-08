@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StuDiscover - Offres</title>
-    <link rel="stylesheet" href="/style/global.css">
-    <link rel="stylesheet" href="/style/offers.css">
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/offers.css" />
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 
     <!-- Google fonts CSS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <%- include('partials/header') %>
     <main>
-        <article class="offerSection">
-            <section id="map">
-                <div id="mapController"></div>
-            </section>
-            <section id="offersList">
-                <h2>Nos offres</h2>
-                <ul>
-                </ul>
-            </section>
-        </article>     
+      <article class="offerSection">
+        <section id="searchForm">
+          <form id="locationSearchForm">
+            <div>
+              <label for="location">Lieu :</label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Ex: Québec, Canada, Saguenay, etc."
+                required
+              />
+            </div>
+            <div>
+              <label for="radius">Rayon (km) :</label>
+              <input
+                type="number"
+                id="radius"
+                name="radius"
+                min="1"
+                value="5"
+                required
+              />
+            </div>
+            <button type="submit">Rechercher</button>
+          </form>
+        </section>
+        <section id="map">
+          <div id="mapController"></div>
+        </section>
+        <section id="offersList">
+          <h2>Nos offres</h2>
+          <ul></ul>
+        </section>
+      </article>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="/js/mapController.js"></script>
-</body>
+    <script src="/js/locationSearch.js"></script>
+  </body>
 </html>
-
