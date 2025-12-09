@@ -64,7 +64,23 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      // Passer les offres initiales du serveur au JavaScript
+      const initialOffers = <%- JSON.stringify(offers || []) %>;
+    </script>
     <script src="/js/mapController.js"></script>
     <script src="/js/locationSearch.js"></script>
+    <script>
+      // Afficher les offres initiales au chargement de la page
+      $(document).ready(function () {
+        if (
+          initialOffers &&
+          initialOffers.length > 0 &&
+          window.updateOffersDisplay
+        ) {
+          window.updateOffersDisplay(initialOffers);
+        }
+      });
+    </script>
   </body>
 </html>
