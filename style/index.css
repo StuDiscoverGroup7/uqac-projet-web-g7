@@ -1,9 +1,23 @@
 main {
     display: flex;
     flex-direction: column;
+    gap: 40px;
+    padding: 100px;
+    background: rgb(211, 211, 211);
 }
 
 #stuDiscoverIntro {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+h1,h2 {
+    font-family: "Montserrat", sans-serif;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
 }
