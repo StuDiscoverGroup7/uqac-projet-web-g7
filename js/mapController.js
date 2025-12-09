@@ -17,70 +17,67 @@ setTimeout(() => {
   map.invalidateSize();
 }, 100);
 
-jsonTest = [
-  {
-    name: "Au bon gougnier",
-    description:
-      "Le restaurant Au Bon Gougnier, niché au cœur du Vieux‑Québec, est une adresse aussi chaleureuse qu'intrigante. Spécialisé dans la viande de dière (une coupe fictive tendre et persillée), il propose une cuisson unique « à la gougnière »",
-    promotionDescription: "Cherche stagiaire !",
-    placeType: "Restaurant",
-    address: "331 boul. Tablot",
-    offerLabel: "Offre d'emploi",
-    offerType: "jobOffer",
-    lat: 46.815,
-    lng: -71.21,
-  },
-  {
-    name: "Chez Tremblay",
-    description:
-      "Librairie indépendante offrant une vaste sélection de livres neufs et d'occasion, ainsi que des événements littéraires réguliers.",
-    promotionDescription: "19% de rabais sur votre première commande!",
-    placeType: "Librairie",
-    address: "330 boul. Tablot",
-    offerLabel: "Promotion",
-    offerType: "promo",
-    lat: 46.812,
-    lng: -71.205,
-  },
-  {
-    name: "Chez Tremblay",
-    description:
-      "Librairie indépendante offrant une vaste sélection de livres neufs et d'occasion, ainsi que des événements littéraires réguliers.",
-    promotionDescription: "19% de rabais sur votre première commande!",
-    placeType: "Librairie",
-    address: "330 boul. Tablot",
-    offerLabel: "Promotion",
-    offerType: "promo",
-    lat: 46.812,
-    lng: -71.205,
-  },
-];
+// Liste des marqueurs actuellement sur la carte
+let markers = [];
 
-jsonTest.forEach((offer) => {
-  L.marker([offer.lat, offer.lng])
-    .addTo(map)
-    .bindPopup(
-      "<b>" +
-        offer.name +
-        "</b><br>" +
-        offer.description +
-        "<br><i>" +
-        offer.address +
-        "</i><br><b>" +
-        offer.offerLabel +
-        "</b>"
-    );
-  offerDom = $(
-    "<li>" +
+// Fonction pour créer le HTML de la popup
+function createPopupHtml(offer) {
+  return `
+    <div id="popupInspection">
+      <div>
+        <h1>${offer.title}</h1>
+        <h3>${offer.type}</h3>
+        <hr>
+        <h4>${offer.description}</h4>
+        <button onClick="closePopup()">Fermer</button>
+      </div>
+    </div>
+  `;
+}
+
+// Fonction pour afficher les offres
+function updateOffersDisplay(offers) {
+  markers.forEach((marker) => {
+    map.removeLayer(marker);
+  });
+  markers = [];
+  $("#offersList ul").empty();
+
+  if (!offers || offers.length === 0) {
+    $("#offersList ul").append("<li><p>Aucune offre trouvée.</p></li>");
+    return;
+  }
+
+  offers.forEach((offer) => {
+    const lat = parseFloat(offer.latitude);
+    const lng = parseFloat(offer.longitude);
+
+    // Ajouter un marqueur sur la carte
+    const marker = L.marker([lat, lng])
+      .addTo(map)
+      .bindPopup(
+        "<b>" +
+          offer.title +
+          "</b><br>" +
+          offer.description +
+          "<br><i>" +
+          offer.address +
+          "</i><br><b>" +
+          offer.type +
+          "</b>"
+      );
+    markers.push(marker);
+
+    // Créer l'élément HTML pour la liste
+    const offerHtml =
+      "<li>" +
       "<div>" +
       '<div class="offerType">' +
       "<h3>" +
-      offer.name +
+      offer.title +
       "</h3>" +
-      '<h4 class="' +
-      offer.offerType +
-      '">' +
-      offer.offerLabel +
+      "<h4>" +
+      offer.type +
       "</h4>" +
       "</div>" +
       "<hr>" +
@@ -91,28 +88,20 @@ jsonTest.forEach((offer) => {
       offer.description +
       "</p>" +
       "</div>" +
-      "</li>"
-  );
+      "</li>";
 
-  offerDom.click(function (event) {
-    console.log(event.target);
-    $("body").append(`
-            <div id="popupInspection">
-                <div>
-                    <h1>${offer.name}</h1>
-                    <h3>${offer.placeType}</h3>
-                    <hr>
-                    <h4>${offer.description}</h4>
-                    <hr>
-                    <h4>${offer.promotionDescription}</h4>
-                    <button onClick="closePopup()">Fermer</button>
-                </div>
-            </div>
-        `);
+    const offerDom = $(offerHtml);
+
+    // Quand on clique sur une offre dans la liste
+    offerDom.click(function () {
+      $("body").append(createPopupHtml(offer));
+    });
+
+    $("#offersList ul").append(offerDom);
   });
+}
 
-  $("#offersList ul").append(offerDom);
-});
+// Rendre cette fonction accessible depuis les autres fichiers
+window.updateOffersDisplay = updateOffersDisplay;
 
-// Add scale control
 L.control.scale().addTo(map);
