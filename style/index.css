@@ -46,3 +46,19 @@ h3 {
 p {
     font-family: "Montserrat", sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+    #stuDiscoverIntro {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        gap: 20px;
+    }
+
+    #stuDiscoverLogo {
+        width: 100%;
+    }
+
+    main {
+        padding: 100px;
+    }
+}
