@@ -1,28 +1,4 @@
-// Fonction pour géocoder une adresse avec Nominatim
-async function geocodeLocation(location) {
-  try {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-        location
-      )}&limit=1`
-    );
-    const data = await response.json();
-
-    if (data.length === 0) {
-      throw new Error("Lieu non trouvé");
-    }
-
-    return {
-      lat: parseFloat(data[0].lat),
-      lng: parseFloat(data[0].lon),
-    };
-  } catch (error) {
-    console.error("Erreur de géocodage:", error);
-    throw error;
-  }
-}
-
-// Gestion du formulaire pour changer la vue de la carte
+// Quand le formulaire est soumis
 $("#locationSearchForm").on("submit", async function (e) {
   e.preventDefault();
 
@@ -40,9 +16,39 @@ $("#locationSearchForm").on("submit", async function (e) {
   }
 
   try {
-    const coords = await geocodeLocation(location);
+    // Trouver les coordonnées du lieu
+    const geoResponse = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+        location
+      )}&limit=1`
+    );
+    const geoData = await geoResponse.json();
 
-    window.map.setView([coords.lat, coords.lng], 13);
+    if (geoData.length === 0) {
+      alert("Lieu non trouvé");
+      return;
+    }
+
+    const lat = parseFloat(geoData[0].lat);
+    const lng = parseFloat(geoData[0].lon);
+
+    // Déplacer la carte vers ce lieu
+    window.map.setView([lat, lng], 13);
+
+    // Chercher les offres dans un rayon
+    const radiusMeters = radiusKm * 1000; // Convertir en mètres
+    const response = await fetch(
+      `/offers/search?lat=${lat}&lng=${lng}&radius=${radiusMeters}`
+    );
+    const data = await response.json();
+
+    // Mettre à jour le titre
+    $("#offersList h2").text(`Nos offres à ${location}`);
+
+    // Afficher les offres sur la carte et dans la liste
+    if (window.updateOffersDisplay) {
+      window.updateOffersDisplay(data.offers);
+    }
   } catch (error) {
     alert("Erreur : " + error.message);
   }
