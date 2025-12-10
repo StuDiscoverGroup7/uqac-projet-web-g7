@@ -1,0 +1,36 @@
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background: rgb(236, 236, 236);
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: "Montserrat", sans-serif;
+}
+
+label {
+    font-family: "Montserrat", sans-serif;
+}
+
+button[type=submit]{
+    padding: 5px;
+    font-family: "Montserrat", sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
