@@ -63,3 +63,15 @@ header nav a[href="/register"]:hover,
 header nav a[href="/logout"]:hover {
   background: #e5e7eb;
 }
+
+@media screen and (max-width: 768px) {
+    header nav ul {
+      flex-direction: column;
+    }
+
+    header {
+      flex-direction: column;
+      height: auto;
+    }
+
+}
