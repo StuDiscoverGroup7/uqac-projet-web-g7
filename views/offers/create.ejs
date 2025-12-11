@@ -14,6 +14,7 @@
   </head>
   <body>
     <%- include('../partials/header') %>
+    
     <main class="main-content">
       <div class="form-card">
         <h1>Créer une offre</h1>
@@ -46,11 +47,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="latitude">Latitude</label>
-              <input type="number" step="any" id="latitude" name="latitude" placeholder="48.4284" required />
+              <input type="text" id="latitude" name="latitude" placeholder="Ex: 48.42 ou 48°N" required />
             </div>
             <div class="form-group">
               <label for="longitude">Longitude</label>
-              <input type="number" step="any" id="longitude" name="longitude" placeholder="-71.0601" required />
+              <input type="text" id="longitude" name="longitude" placeholder="Ex: -71.06 ou 71°W" required />
             </div>
           </div>
 
@@ -61,5 +62,7 @@
         </form>
       </div>
     </main>
+
+    <script src="/js/offer-form.js"></script>
   </body>
 </html>

@@ -48,11 +48,11 @@
           <div class="form-row">
             <div class="form-group">
               <label for="latitude">Latitude</label>
-              <input type="number" step="any" id="latitude" name="latitude" value="<%= offer.latitude %>" required />
+              <input type="text" step="any" id="latitude" name="latitude" value="<%= offer.latitude %>" required />
             </div>
             <div class="form-group">
               <label for="longitude">Longitude</label>
-              <input type="number" step="any" id="longitude" name="longitude" value="<%= offer.longitude %>" required />
+              <input type="text" step="any" id="longitude" name="longitude" value="<%= offer.longitude %>" required />
             </div>
           </div>
 
@@ -64,5 +64,6 @@
         </form>
       </div>
     </main>
+    <script src="/js/offer-form.js"></script>
   </body>
 </html>
