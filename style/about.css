@@ -1,3 +1,6 @@
+body {
+  background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+}
 /* Wrapper spécifique à la page About */
 .aboutWrapper {
   width: 100%;
