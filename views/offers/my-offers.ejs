@@ -4,61 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mes offres - StuDiscover</title>
+    
     <link rel="stylesheet" href="/style/global.css" />
-    <link rel="stylesheet" href="/style/my-offers.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="/style/offers/my-offers.css" />
   </head>
+
   <body>
     <%- include('../partials/header') %>
-    <main>
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        "
-      >
-        <h1 style="margin: 0">Mes offres</h1>
-        <a href="/offers/create">+ Créer une offre</a>
-      </div>
+
+    <main class="container">
+
+      <section class="header-actions">
+        <h1>Mes offres</h1>
+        <a href="/offers/create" class="btn-create">+ Nouvelle offre</a>
+      </section>
+
       <% if (error) { %>
-      <div class="error-message"><%= error %></div>
-      <% } %> <% if (success) { %>
-      <div class="success-message"><%= success %></div>
-      <% } %> <% if (offers.length === 0) { %>
-      <p class="no-offers">Vous n'avez pas encore créé d'offres.</p>
-      <a href="/offers/create" class="create-link">Créer une offre</a>
-      <% } else { %>
-      <div class="offers-grid">
-        <% offers.forEach(offer => { %>
-        <div class="offer-card">
-          <div class="offer-header">
-            <h3><%= offer.title %></h3>
-            <span
-              class="offer-type <%= offer.type === 'job' ? 'jobOffer' : 'promo' %>"
-            >
-              <%= offer.type %>
-            </span>
-          </div>
-          <div class="offer-body">
-            <p class="offer-address"><%= offer.address %></p>
-            <p class="offer-description"><%= offer.description %></p>
-          </div>
-          <div class="offer-footer">
-            <a href="/offers/<%= offer.id %>/edit" class="btn-edit">Modifier</a>
-            <a href="/offers/<%= offer.id %>/delete" class="btn-delete"
-              >Supprimer</a
-            >
-          </div>
-        </div>
-        <% }); %>
-      </div>
+        <div class="alert error"><%= error %></div>
       <% } %>
+
+      <% if (success) { %>
+        <div class="alert success"><%= success %></div>
+      <% } %>
+
+      <% if (offers.length === 0) { %>
+
+        <section class="empty-state">
+          <p>Aucune offre pour l'instant.</p>
+          <a href="/offers/create" class="btn-create">Créer ma première offre</a>
+        </section>
+
+      <% } else { %>
+
+        <section class="offers-grid">
+          <% offers.forEach(offer => { %>
+            <div class="offer-card">
+              <div class="card-top">
+                <h3><%= offer.title %></h3>
+                <span class="badge <%= offer.type === 'job' ? 'bg-blue' : 'bg-red' %>">
+                  <%= offer.type %>
+                </span>
+              </div>
+
+              <div class="card-content">
+                <p class="address"><%= offer.address %></p>
+                <p class="desc"><%= offer.description %></p>
+              </div>
+
+              <div class="card-actions">
+                <a href="/offers/<%= offer.id %>/edit" class="action-btn edit">Modifier</a>
+                <a href="/offers/<%= offer.id %>/delete" class="action-btn delete">Supprimer</a>
+              </div>
+            </div>
+          <% }); %>
+        </section>
+
+      <% } %>
+
     </main>
   </body>
 </html>

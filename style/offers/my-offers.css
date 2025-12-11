@@ -1,0 +1,244 @@
+/* ===========================
+   CONTAINER GLOBAL
+   =========================== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ===========================
+   HEADER + ACTION
+   =========================== */
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.header-actions h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ===========================
+   BOUTON STYLE GLOBAL
+   =========================== */
+.btn-create {
+    display: inline-block;
+    padding: 10px 26px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background-color: #2563eb;
+    border: 2px solid #2563eb;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-create:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ===========================
+   EMPTY STATE
+   =========================== */
+.empty-state {
+    margin-top: 40px;
+    text-align: center;
+    padding: 50px 20px;
+    background: #f9fafb;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+
+    clear: both;
+    display: block;
+}
+
+.empty-state p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #4b5563;
+}
+
+/* ===========================
+   GRID DES OFFRES
+   =========================== */
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 24px;
+}
+
+/* ===========================
+   CARD OFFRE
+   =========================== */
+.offer-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: all 0.2s ease-in-out;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.offer-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.07);
+    border-color: #bfdbfe;
+}
+
+/* ===========================
+   CARD HEADER
+   =========================== */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.card-top h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ===========================
+   BADGES
+   =========================== */
+.badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    white-space: nowrap;
+}
+
+.bg-blue { background-color: #2563eb; }
+.bg-red { background-color: #dc2626; }
+
+/* ===========================
+   CARD CONTENT
+   =========================== */
+.card-content {
+    margin: 16px 0 20px;
+}
+
+.address {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.desc {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+
+    /* Clamp à 3 lignes */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ===========================
+   CARD ACTIONS
+   =========================== */
+.card-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* Bouton modifier */
+.edit {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+.edit:hover {
+    background-color: #e5e7eb;
+    transform: translateY(-2px);
+}
+
+/* Bouton supprimer */
+.delete {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+.delete:hover {
+    background-color: #fecaca;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   ALERTS
+   =========================== */
+.alert {
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 650px) {
+    .header-actions {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .header-actions h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-create {
+        width: 100%;
+        text-align: center;
+    }
+}
