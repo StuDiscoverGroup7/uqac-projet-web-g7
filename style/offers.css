@@ -51,6 +51,27 @@
   background: rgb(25, 0, 200);
 }
 
+#useCurrentLocation {
+  padding: 10px 15px;
+  font-size: 18px;
+  min-width: 45px;
+  background: rgb(31, 0, 236);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#useCurrentLocation:hover {
+  background: rgb(25, 0, 200);
+}
+
+#useCurrentLocation:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 #map {
   background: red;
 }

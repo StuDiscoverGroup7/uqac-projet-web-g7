@@ -31,12 +31,22 @@
           <form id="locationSearchForm">
             <div>
               <label for="location">Lieu :</label>
-              <input
-                type="text"
-                id="location"
-                name="location"
-                placeholder="Ex: Québec, Canada, Saguenay, etc."
-              />
+              <div style="display: flex; gap: 10px">
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="Ex: Québec, Canada, Saguenay, etc."
+                  style="flex: 1"
+                />
+                <button
+                  type="button"
+                  id="useCurrentLocation"
+                  title="Utiliser ma position actuelle"
+                >
+                  📍
+                </button>
+              </div>
             </div>
             <div>
               <label for="radius">Rayon (km) :</label>
@@ -79,6 +89,7 @@
     </script>
     <script src="/js/mapController.js"></script>
     <script src="/js/locationSearch.js"></script>
+    <script src="/js/geolocation.js"></script>
     <script>
       // Afficher les offres initiales au chargement de la page
       $(document).ready(function () {
