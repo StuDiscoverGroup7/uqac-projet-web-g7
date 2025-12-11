@@ -54,23 +54,23 @@ function updateOffersDisplay(offers) {
 
     // Ajouter un marqueur sur la carte
     const marker = L.marker([lat, lng])
-      .addTo(map)
-      .bindPopup(
-        "<b>" +
+    .addTo(map)
+    .bindPopup(
+      "<b>" +
           offer.title +
-          "</b><br>" +
-          offer.description +
-          "<br><i>" +
-          offer.address +
-          "</i><br><b>" +
+        "</b><br>" +
+        offer.description +
+        "<br><i>" +
+        offer.address +
+        "</i><br><b>" +
           offer.type +
-          "</b>"
-      );
+        "</b>"
+    );
     markers.push(marker);
 
     // Créer l'élément HTML pour la liste
     const offerHtml =
-      "<li>" +
+    "<li>" +
       "<div>" +
       '<div class="offerType">' +
       "<h3>" +
@@ -95,10 +95,10 @@ function updateOffersDisplay(offers) {
     // Quand on clique sur une offre dans la liste
     offerDom.click(function () {
       $("body").append(createPopupHtml(offer));
-    });
-
-    $("#offersList ul").append(offerDom);
   });
+
+  $("#offersList ul").append(offerDom);
+});
 }
 
 // Rendre cette fonction accessible depuis les autres fichiers
