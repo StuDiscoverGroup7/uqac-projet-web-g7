@@ -51,13 +51,22 @@ async function searchOffers(location, radiusKm, type) {
       }
     }
 
-    const response = await fetch(url + params.toString());
+    const fullUrl = url + params.toString();
+    console.log("Recherche d'offres:", fullUrl);
+    const response = await fetch(fullUrl);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Erreur HTTP: ${response.status}`);
+    }
+
     const data = await response.json();
 
     if (window.updateOffersDisplay) {
       window.updateOffersDisplay(data.offers);
     }
   } catch (error) {
+    console.error("Erreur lors de la recherche:", error);
     alert("Erreur : " + error.message);
   }
 }
@@ -67,7 +76,8 @@ $("#locationSearchForm").on("submit", async function (e) {
   e.preventDefault();
 
   const location = $("#location").val().trim();
-  const radiusKm = parseFloat($("#radius").val()) || 5;
+  const radiusValue = $("#radius").val();
+  const radiusKm = location ? parseFloat(radiusValue) || 5 : null;
   const type = $("#type").val();
 
   // Validation du rayon si un lieu est spécifié
