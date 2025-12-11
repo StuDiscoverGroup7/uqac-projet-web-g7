@@ -1,6 +1,13 @@
 <header>
-  <img src="/img/logoLong.png" alt="Logo StuDiscover" />
-  <nav>
+  <div class="header-container">
+    <img src="/img/logoLong.png" alt="Logo StuDiscover" />
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+      <span class="menu-toggle-line"></span>
+      <span class="menu-toggle-line"></span>
+      <span class="menu-toggle-line"></span>
+    </button>
+  </div>
+  <nav class="main-nav">
     <ul>
       <li><a href="/">Accueil</a></li>
       <li><a href="/qui-sommes-nous">Qui sommes nous ?</a></li>
@@ -16,3 +23,29 @@
     </ul>
   </nav>
 </header>
+<script>
+  // Script pour gérer l'ouverture/fermeture du menu burger
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".main-nav");
+
+    if (menuToggle && nav) {
+      menuToggle.addEventListener("click", function () {
+        const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", !isExpanded);
+        nav.classList.toggle("nav-open");
+        menuToggle.classList.toggle("menu-toggle-open");
+      });
+
+      // Fermer le menu quand on clique sur un lien
+      const navLinks = nav.querySelectorAll("a");
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          nav.classList.remove("nav-open");
+          menuToggle.classList.remove("menu-toggle-open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+  });
+</script>

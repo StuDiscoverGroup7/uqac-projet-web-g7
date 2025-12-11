@@ -2,10 +2,10 @@
    RESET & BASE
    =========================== */
 
-
 body {
   /* On applique la police et les couleurs ici pour tout le site */
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
   color: #222;
   background: #fff;
   line-height: 1.5;
@@ -15,7 +15,14 @@ body {
 /* ===========================
    TYPOGRAPHIE GLOBALE
    =========================== */
-h1, h2, h3, h4, h5, h6, ul, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+p {
   margin: 0;
 }
 
@@ -50,58 +57,173 @@ main {
 }
 
 /* ===========================
-   HEADER
+   HEADER - MOBILE FIRST
    =========================== */
 header {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
-  height: 10vh;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 1.5rem;
+  min-height: 70px;
 }
 
 header img {
   height: 48px;
+  max-width: 200px;
 }
 
-header nav ul {
-  list-style: none;
+/* Bouton burger menu */
+.menu-toggle {
   display: flex;
-  gap: 1.25rem;
-  /* Font-family hérité du body maintenant, plus besoin de le répéter ici */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  transition: transform 0.3s ease;
 }
 
-header nav a {
+.menu-toggle:focus {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.menu-toggle-line {
+  width: 100%;
+  height: 3px;
+  background-color: #111827;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.menu-toggle-open .menu-toggle-line:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle-open .menu-toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle-open .menu-toggle-line:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Navigation - Mobile First (cachée par défaut) */
+.main-nav {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: white;
+}
+
+.main-nav.nav-open {
+  max-height: 500px;
+  transition: max-height 0.3s ease-in;
+}
+
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.main-nav li {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.main-nav li:last-child {
+  border-bottom: none;
+}
+
+.main-nav a {
+  display: block;
+  padding: 1rem 1.5rem;
   text-decoration: none;
   color: #111827;
   font-weight: 600;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-header nav a[href="/login"],
-header nav a[href="/register"],
-header nav a[href="/logout"] {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+.main-nav a:hover {
+  background-color: #f3f4f6;
+  color: #2563eb;
+}
+
+.main-nav a[href="/login"],
+.main-nav a[href="/register"],
+.main-nav a[href="/logout"] {
   background: #f3f4f6;
-  transition: background 0.2s;
+  margin: 0.5rem 1.5rem;
+  border-radius: 6px;
+  text-align: center;
 }
 
-header nav a[href="/login"]:hover,
-header nav a[href="/register"]:hover,
-header nav a[href="/logout"]:hover {
+.main-nav a[href="/login"]:hover,
+.main-nav a[href="/register"]:hover,
+.main-nav a[href="/logout"]:hover {
   background: #e5e7eb;
+  color: #111827;
 }
 
-@media screen and (max-width: 768px) {
-    header nav ul {
-      flex-direction: column;
-    }
+/* Desktop - Menu horizontal */
+@media screen and (min-width: 769px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 10vh;
+  }
 
-    header {
-      flex-direction: column;
-      height: auto;
-    }
+  .header-container {
+    padding: 0;
+    min-height: auto;
+  }
 
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    max-height: none;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+
+  .main-nav li {
+    border-bottom: none;
+  }
+
+  .main-nav a {
+    padding: 0.5rem 0;
+    display: inline-block;
+  }
+
+  .main-nav a[href="/login"],
+  .main-nav a[href="/register"],
+  .main-nav a[href="/logout"] {
+    padding: 0.5rem 1rem;
+    margin: 0;
+    border-radius: 6px;
+  }
 }
