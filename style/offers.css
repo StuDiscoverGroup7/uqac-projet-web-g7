@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: 1fr 400px;
   grid-template-rows: auto 1fr;
-  height: calc(100vh - 10vh); 
+  height: calc(100vh - 10vh);
   width: 100%;
   overflow: hidden;
 }
@@ -19,13 +19,16 @@
   padding: 16px 24px;
   border-bottom: 1px solid #e5e7eb;
   z-index: 10;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
+/* ===========================
+   FORMULAIRE - MOBILE FIRST
+   =========================== */
 #locationSearchForm {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  align-items: flex-end;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -33,7 +36,7 @@
 #locationSearchForm > div {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 100%;
 }
 
 #locationSearchForm label {
@@ -43,22 +46,68 @@
   color: #374151;
 }
 
-#locationSearchForm input {
+/* Styles communs pour tous les champs (input, select) */
+#locationSearchForm input[type="text"],
+#locationSearchForm input[type="number"],
+#locationSearchForm select {
   padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-family: inherit;
   font-size: 0.95rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
 }
 
-#locationSearchForm input:focus {
+#locationSearchForm input:focus,
+#locationSearchForm select:focus {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-#locationSearchForm button {
+/* Wrapper pour le champ lieu avec bouton de géolocalisation */
+.location-input-wrapper {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.location-input-wrapper input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Bouton de géolocalisation */
+.location-button {
+  padding: 10px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  flex-shrink: 0;
+  min-width: 48px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.location-button:hover {
+  background-color: #1d4ed8;
+}
+
+.location-button:active {
+  transform: translateY(1px);
+}
+
+/* Bouton de soumission */
+#locationSearchForm button[type="submit"] {
   padding: 10px 24px;
   background-color: #2563eb;
   color: white;
@@ -69,14 +118,15 @@
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
   height: 42px;
+  width: 100%;
+  margin-top: 4px;
 }
 
-#locationSearchForm button:hover {
+#locationSearchForm button[type="submit"]:hover {
   background-color: #1d4ed8;
 }
 
-
-#locationSearchForm button:active {
+#locationSearchForm button[type="submit"]:active {
   transform: translateY(1px);
 }
 
@@ -163,7 +213,8 @@
 #offersList ul li:hover {
   border-color: #bfdbfe;
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 /* En-tête de la carte (Titre + Badge) */
@@ -216,7 +267,7 @@
   font-size: 0.9rem;
   color: #6b7280;
   line-height: 1.5;
-  
+
   /* Coupe le texte s'il est trop long (3 lignes max) */
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -256,13 +307,32 @@
   border-radius: 16px;
   max-width: 600px;
   width: 90%;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   position: relative;
 }
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE - DESKTOP
    =========================== */
+@media (min-width: 801px) {
+  #locationSearchForm {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 16px;
+  }
+
+  #locationSearchForm > div {
+    flex: 1;
+  }
+
+  #locationSearchForm button[type="submit"] {
+    width: auto;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+}
+
 @media (max-width: 800px) {
   .offerSection {
     grid-template-columns: 1fr;
@@ -275,15 +345,11 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    padding: 12px 16px;
   }
 
   #locationSearchForm {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  #locationSearchForm button {
-    width: 100%;
+    gap: 12px;
   }
 
   /* La liste redevient scrollable normalement dans le flux de la page */
@@ -292,8 +358,8 @@
     border-left: none;
     border-top: 1px solid #e5e7eb;
   }
-  
+
   #offersList ul {
-    overflow-y: visible; 
+    overflow-y: visible;
   }
 }

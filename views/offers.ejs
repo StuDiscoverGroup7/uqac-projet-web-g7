@@ -31,18 +31,19 @@
           <form id="locationSearchForm">
             <div>
               <label for="location">Lieu :</label>
-              <div style="display: flex; gap: 10px">
+              <div class="location-input-wrapper">
                 <input
                   type="text"
                   id="location"
                   name="location"
                   placeholder="Ex: Québec, Canada, Saguenay, etc."
-                  style="flex: 1"
                 />
                 <button
                   type="button"
                   id="useCurrentLocation"
+                  class="location-button"
                   title="Utiliser ma position actuelle"
+                  aria-label="Utiliser ma position actuelle"
                 >
                   📍
                 </button>
