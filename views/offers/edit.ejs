@@ -26,7 +26,14 @@
         </div>
         <div>
           <label>Type:</label>
-          <input type="text" name="type" value="<%= offer.type %>" required />
+          <select name="type" required>
+            <option value="">Sélectionnez un type</option>
+            <option value="reduction" <%= offer.type === 'reduction' ? 'selected' : '' %>>Réduction</option>
+            <option value="job" <%= offer.type === 'job' ? 'selected' : '' %>>Offre d'emploi</option>
+            <option value="stage" <%= offer.type === 'stage' ? 'selected' : '' %>>Stage</option>
+            <option value="promotion" <%= offer.type === 'promotion' ? 'selected' : '' %>>Promotion</option>
+            <option value="evenement" <%= offer.type === 'evenement' ? 'selected' : '' %>>Événement</option>
+          </select>
         </div>
         <div>
           <label>Address:</label>

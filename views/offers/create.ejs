@@ -17,7 +17,7 @@
     <main>
       <h1>Créer une offre</h1>
       <% if (error) { %>
-        <div class="error-message"><%= error %></div>
+      <div class="error-message"><%= error %></div>
       <% } %>
       <form action="/offers" method="POST">
         <div>
@@ -26,7 +26,14 @@
         </div>
         <div>
           <label>Type:</label>
-          <input type="text" name="type" required />
+          <select name="type" required>
+            <option value="">Sélectionnez un type</option>
+            <option value="reduction">Réduction</option>
+            <option value="job">Offre d'emploi</option>
+            <option value="stage">Stage</option>
+            <option value="promotion">Promotion</option>
+            <option value="evenement">Événement</option>
+          </select>
         </div>
         <div>
           <label>Address:</label>
@@ -38,21 +45,11 @@
         </div>
         <div>
           <label>Latitude:</label>
-          <input
-            type="number"
-            step="any"
-            name="latitude"
-            required
-          />
+          <input type="number" step="any" name="latitude" required />
         </div>
         <div>
           <label>Longitude:</label>
-          <input
-            type="number"
-            step="any"
-            name="longitude"
-            required
-          />
+          <input type="number" step="any" name="longitude" required />
         </div>
         <button type="submit">Créer l'offre</button>
         <a href="/offers">Annuler</a>
@@ -60,4 +57,3 @@
     </main>
   </body>
 </html>
-
