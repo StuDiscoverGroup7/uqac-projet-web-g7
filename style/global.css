@@ -73,9 +73,16 @@ header {
   min-height: 70px;
 }
 
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  line-height: 0;
+}
+
 header img {
   height: 48px;
   max-width: 200px;
+  display: block;
 }
 
 /* Bouton burger menu */
