@@ -67,50 +67,92 @@ app.get("/offers", async (req, res) => {
   res.render("offers", { offers, error, success });
 });
 
-// GET /offers/search - Rechercher des offres dans un rayon (PostGIS)
+// GET /offers/search - Rechercher des offres dans un rayon (PostGIS) ou par type
 app.get("/offers/search", async (req, res) => {
-  const { lat, lng, radius = 5000 } = req.query;
-  if (!lat || !lng) {
-    return res.status(400).json({
-      error: "Les paramètres lat et lng sont requis",
-    });
-  }
-
-  const latitude = parseFloat(lat);
-  const longitude = parseFloat(lng);
-  const radiusMeters = parseFloat(radius);
-
-  if (isNaN(latitude) || isNaN(longitude) || isNaN(radiusMeters)) {
-    return res.status(400).json({
-      error: "Les paramètres doivent être des nombres valides",
-    });
-  }
+  const { lat, lng, radius = 5000, type } = req.query;
 
   try {
-    const offers = await prisma.$queryRaw`
-      SELECT 
-        id,
-        title,
-        type,
-        address,
-        description,
-        latitude,
-        longitude,
-        "userId",
-        "createdAt",
-        "updatedAt",
-        ST_Distance(
-          ST_MakePoint(longitude, latitude)::geography,
-          ST_MakePoint(${longitude}, ${latitude})::geography
-        ) AS distance
-      FROM "Offer"
-      WHERE ST_DWithin(
-        ST_MakePoint(longitude, latitude)::geography,
-        ST_MakePoint(${longitude}, ${latitude})::geography,
-        ${radiusMeters}
-      )
-      ORDER BY distance ASC
-    `;
+    let offers;
+
+    // Si des coordonnées sont fournies, recherche géographique
+    if (lat && lng) {
+      const latitude = parseFloat(lat);
+      const longitude = parseFloat(lng);
+      const radiusMeters = parseFloat(radius);
+
+      if (isNaN(latitude) || isNaN(longitude) || isNaN(radiusMeters)) {
+        return res.status(400).json({
+          error: "Les paramètres doivent être des nombres valides",
+        });
+      }
+
+      // Construire la requête avec filtre de type si spécifié
+      if (type) {
+        offers = await prisma.$queryRaw`
+          SELECT 
+            id,
+            title,
+            type,
+            address,
+            description,
+            latitude,
+            longitude,
+            "userId",
+            "createdAt",
+            "updatedAt",
+            ST_Distance(
+              ST_MakePoint(longitude, latitude)::geography,
+              ST_MakePoint(${longitude}, ${latitude})::geography
+            ) AS distance
+          FROM "Offer"
+          WHERE ST_DWithin(
+            ST_MakePoint(longitude, latitude)::geography,
+            ST_MakePoint(${longitude}, ${latitude})::geography,
+            ${radiusMeters}
+          )
+          AND type = ${type}
+          ORDER BY distance ASC
+        `;
+      } else {
+        offers = await prisma.$queryRaw`
+          SELECT 
+            id,
+            title,
+            type,
+            address,
+            description,
+            latitude,
+            longitude,
+            "userId",
+            "createdAt",
+            "updatedAt",
+            ST_Distance(
+              ST_MakePoint(longitude, latitude)::geography,
+              ST_MakePoint(${longitude}, ${latitude})::geography
+            ) AS distance
+          FROM "Offer"
+          WHERE ST_DWithin(
+            ST_MakePoint(longitude, latitude)::geography,
+            ST_MakePoint(${longitude}, ${latitude})::geography,
+            ${radiusMeters}
+          )
+          ORDER BY distance ASC
+        `;
+      }
+    } else {
+      // Recherche simple par type sans géolocalisation
+      if (type) {
+        offers = await prisma.offer.findMany({
+          where: { type },
+          orderBy: { createdAt: "desc" },
+        });
+      } else {
+        // Aucun filtre, retourner toutes les offres
+        offers = await prisma.offer.findMany({
+          orderBy: { createdAt: "desc" },
+        });
+      }
+    }
 
     res.json({ offers });
   } catch (err) {
