@@ -1,15 +1,32 @@
+/* ===========================
+   LAYOUT GÉNÉRAL (GRID)
+   =========================== */
+.offerSection {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  grid-template-rows: auto 1fr;
+  height: calc(100vh - 10vh); 
+  width: 100%;
+  overflow: hidden;
+}
+
+/* ===========================
+   ZONE DE RECHERCHE (TOP)
+   =========================== */
 #searchForm {
   grid-column: 1 / -1;
   background: white;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 
 #locationSearchForm {
   display: flex;
-  gap: 15px;
+  gap: 16px;
   align-items: flex-end;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -20,185 +37,263 @@
 }
 
 #locationSearchForm label {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
 }
 
-#locationSearchForm input,
-#locationSearchForm select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 14px;
+#locationSearchForm input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+#locationSearchForm input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 #locationSearchForm button {
-  padding: 10px 20px;
-  background: rgb(31, 0, 236);
+  padding: 10px 24px;
+  background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 5px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
+  height: 42px;
 }
 
 #locationSearchForm button:hover {
-  background: rgb(25, 0, 200);
+  background-color: #1d4ed8;
 }
 
-#useCurrentLocation {
-  padding: 10px 15px;
-  font-size: 18px;
-  min-width: 45px;
-  background: rgb(31, 0, 236);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.2s;
+
+#locationSearchForm button:active {
+  transform: translateY(1px);
 }
 
-#useCurrentLocation:hover {
-  background: rgb(25, 0, 200);
-}
-
-#useCurrentLocation:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-}
-
+/* ===========================
+   CARTE INTERACTIVE (GAUCHE)
+   =========================== */
 #map {
-  background: red;
+  background-color: #e5e7eb;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 #mapController {
   height: 100%;
   width: 100%;
+  z-index: 1;
 }
 
+/* ===========================
+   LISTE DES OFFRES (DROITE)
+   =========================== */
 #offersList {
-  background: rgb(181, 181, 181);
+  background-color: #f9fafb;
+  border-left: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 #offersList h2 {
-  color: rgb(0, 0, 0);
-  text-align: center;
+  padding: 20px 24px;
   background: white;
-  padding: 20px;
-  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #111827;
+  border-bottom: 1px solid #f3f4f6;
+  font-weight: 700;
 }
 
 #offersList ul {
+  list-style: none;
+  padding: 16px;
+  margin: 0;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  overflow-y: auto;
+  gap: 16px;
+  flex: 1;
 }
 
+/* Scrollbar personnalisée pour la liste */
+#offersList ul::-webkit-scrollbar {
+  width: 8px;
+}
+#offersList ul::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+#offersList ul::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+#offersList ul::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* ===========================
+   CARTE D'UNE OFFRE
+   =========================== */
 #offersList ul li {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: transform, box-shadow;
-  transform-origin: center top;
-  cursor: default;
+  gap: 8px;
 }
 
 #offersList ul li:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  border-color: #bfdbfe;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-#offersList ul li h4 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-}
-
-.offerSection {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-template-rows: auto 1fr;
-  height: calc(100vh - 10vh);
-}
-
+/* En-tête de la carte (Titre + Badge) */
 .offerType {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .offerType h3 {
-  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: rgb(0, 0, 0);
+  color: #1f2937;
+  line-height: 1.4;
 }
 
+/* Badges (Job vs Promo) */
 .offerType h4 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 8px;
+  border-radius: 6px;
   color: white;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 12px;
+  white-space: nowrap;
 }
 
-.type-reduction {
-  background: rgb(236, 0, 0);
+.jobOffer {
+  background-color: #2563eb;
 }
 
-.type-job {
-  background: rgb(31, 0, 236);
+.promo {
+  background-color: #dc2626;
 }
 
-.type-stage {
-  background: rgb(0, 150, 0);
-}
-
-.type-promotion {
-  background: rgb(255, 165, 0);
-}
-
-.type-evenement {
-  background: rgb(138, 43, 226);
-}
-
-.type-default {
-  background: rgb(128, 128, 128);
+/* Contenu de la carte */
+#offersList ul li h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  font-weight: 500;
 }
 
 #offersList ul li p {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+  
+  /* Coupe le texte s'il est trop long (3 lignes max) */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* ===========================
+   POPUP INSPECTION (MODAL)
+   =========================== */
 #popupInspection {
   position: fixed;
   top: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 5000;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Classe pour afficher la popup (à gérer en JS) */
+#popupInspection.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 #popupInspection > div {
   background: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 80%;
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  position: relative;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 800px) {
+  .offerSection {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 40vh 1fr;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  #searchForm {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  #locationSearchForm {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #locationSearchForm button {
+    width: 100%;
+  }
+
+  /* La liste redevient scrollable normalement dans le flux de la page */
+  #offersList {
+    height: auto;
+    border-left: none;
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  #offersList ul {
+    overflow-y: visible; 
+  }
 }
