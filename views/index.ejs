@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StuDiscover - Accueil</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StuDiscover - Boostez votre vie étudiante</title>
 
     <link rel="stylesheet" href="/style/global.css" />
     <link rel="stylesheet" href="/style/index.css" />
 
-    <!-- Google fonts CSS -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
     <%- include('partials/header') %>
+
     <main>
-      <article id="stuDiscoverIntro">
-        <div>
-          <h1>Bienvenue sur</h1>
-          <img
-            id="stuDiscoverLogo"
-            src="/img/logoLong.png"
-            alt="Logo StuDiscover"
-            width="200"
-          />
-          <p>
-            StuDiscover est votre plateforme de référence pour trouver des
-            ressources éducatives, des conseils d'étude, et bien plus encore.
-          </p>
-        </div>
-        <div>
-          <img
-            id="placeholder"
-            src="/img/studentPlaceholder.jpg"
-            alt="Illustration StuDiscover"
-            width="400"
-          />
-        </div>
-      </article>
-      <section class="stuDiscoverDetails">
-        <h2>Découvrez des ressources pour étudiants</h2>
-        <p>
-          StuDiscover est votre plateforme de référence pour trouver des
-          ressources éducatives, des conseils d'étude, et bien plus encore.
-        </p>
-      </section>
-      <section class="stuDiscoverDetails">
-        <h2>Nos Services</h2>
-        <ul>
-          <li><h3>Bibliothèque de documents</h3></li>
-          <li><h3>Forums de discussion</h3></li>
-          <li><h3>Ateliers en ligne</h3></li>
-        </ul>
-      </section>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <span class="badge">Par des étudiants, POUR des étudiants</span>
+                    <h1>Boostez votre avenir et votre quotidien</h1>
+                    <p>
+                        StuDiscover connecte les étudiants aux entreprises partenaires. 
+                        Trouvez votre prochain <strong>stage</strong>, décrochez un <strong>emploi</strong>, 
+                        ou profitez de <strong>réductions exclusives</strong> chez vos commerçants locaux.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="/offers" class="btn btn-primary">Voir les offres</a>
+                        <a href="/nos-partenaires" class="btn btn-secondary">Nos partenaires</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Tout ce dont vous avez besoin</h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="icon">🚀</div>
+                        <h3>Carrière & Avenir</h3>
+                        <p>Accédez à des offres d'emploi, d'alternance et de stages publiées directement par des recruteurs à la recherche de talents.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="icon">💸</div>
+                        <h3>Bons plans & Réductions</h3>
+                        <p>Cinéma, librairie, supermarché... Profitez d'avantages exclusifs négociés auprès de grandes enseignes et commerces locaux.</p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="icon">🤝</div>
+                        <h3>Réseau Étudiant</h3>
+                        <p>Une plateforme facilitant la rencontre entre les besoins des entreprises et vos attentes du quotidien.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
+
+    </body>
 </html>

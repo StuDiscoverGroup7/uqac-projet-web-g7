@@ -1,64 +1,204 @@
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 100px;
-    background: rgb(211, 211, 211);
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-#stuDiscoverIntro {
+/* Styles des boutons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    border: 2px solid #2563eb;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #333;
+    border: 2px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+    border-color: #333;
+    background-color: #333;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+   HERO SECTION
+   =========================== */
+.hero {
+    padding: 100px 0 80px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+    border-bottom: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-text {
+    max-width: 700px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: #111;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: #4b5563;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* ===========================
+   FEATURES SECTION
+   =========================== */
+.features {
+    padding: 80px 0 100px;
+    background-color: #ffffff;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #111;
+}
+
+.features-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 200px;
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
+    /* On force 2 colonnes minimum sur desktop pour que le layout soit joli (2 en haut, 1 en bas) */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
 }
 
-#stuDiscoverIntro #placeholder {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-#stuDiscoverLogo {
-    width: 60%;
-}
-
-.stuDiscoverDetails {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
+.feature-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 16px;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    text-align: left;
+    
+    /* Flexbox pour bien aligner le contenu si la boite est grande */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    justify-content: flex-start;
 }
 
-h1,h2 {
-    font-family: "Montserrat", sans-serif;
+/* --- C'EST ICI QUE ÇA SE PASSE --- */
+/* Le dernier enfant (la 3ème carte) prend toute la largeur */
+.feature-card:last-child {
+    grid-column: 1 / -1; 
+    
+    /* Optionnel : centrer le texte pour cette carte large */
+    text-align: center; 
+    align-items: center;
 }
 
-h3 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: #bfdbfe;
 }
 
-p {
-    font-family: "Montserrat", sans-serif;
+.feature-card .icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
-@media screen and (max-width: 768px) {
-    #stuDiscoverIntro {
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-        gap: 20px;
+.feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.feature-card p {
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-text p {
+        font-size: 1.1rem;
     }
 
-    #stuDiscoverLogo {
+    .hero-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
         width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Sur mobile, on repasse tout en 1 seule colonne */
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 
-    main {
-        padding: 60px;
+    .feature-card {
+        text-align: center;
+        align-items: center;
     }
 }
