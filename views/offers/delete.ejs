@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Supprimer une offre - StuDiscover</title>
     <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/offers/my-offers.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,19 +15,66 @@
   </head>
   <body>
     <%- include('../partials/header') %>
-    <main>
-      <h1>Supprimer l'offre</h1>
+    <main class="container">
+      <section class="header-actions">
+        <h1>Supprimer l'offre</h1>
+      </section>
+
       <% if (error) { %>
-        <div class="error-message"><%= error %></div>
+      <div class="alert error"><%= error %></div>
       <% } %>
-      <p>Êtes-vous sûr de vouloir supprimer l'offre "<%= offer.title %>" ?</p>
-      <p>Cette action est irréversible.</p>
-      <form action="/offers/<%= offer.id %>/delete" method="POST">
-        <button type="submit">Confirmer la suppression</button>
-        <a href="/offers">Annuler</a>
-      </form>
+
+      <div class="offer-card" style="max-width: 600px; margin: 40px auto">
+        <div class="card-top">
+          <h3><%= offer.title %></h3>
+          <span
+            class="badge <%= offer.type === 'job' ? 'bg-blue' : 'bg-red' %>"
+          >
+            <%= offer.type %>
+          </span>
+        </div>
+
+        <div class="card-content">
+          <p class="address"><%= offer.address %></p>
+          <p class="desc"><%= offer.description %></p>
+        </div>
+
+        <div
+          style="
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+          "
+        >
+          <p style="margin-bottom: 20px; color: #991b1b; font-weight: 600">
+            ⚠️ Êtes-vous sûr de vouloir supprimer cette offre ?
+          </p>
+          <p style="margin-bottom: 24px; color: #6b7280">
+            Cette action est irréversible.
+          </p>
+
+          <form
+            action="/offers/<%= offer.id %>/delete"
+            method="POST"
+            style="display: flex; gap: 12px"
+          >
+            <button
+              type="submit"
+              class="action-btn delete"
+              style="flex: 1; cursor: pointer; border: none"
+            >
+              Confirmer la suppression
+            </button>
+            <a
+              href="/my-offers"
+              class="action-btn edit"
+              style="flex: 1; text-align: center"
+            >
+              Annuler
+            </a>
+          </form>
+        </div>
+      </div>
     </main>
   </body>
 </html>
-
-
