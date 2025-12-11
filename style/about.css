@@ -1,21 +1,4 @@
-/* Base */
-body {
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: #222;
-  background: #fff;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
-}
-
-/* Main layout */
-main {
-  padding: 32px 20px;
-  display: flex;
-  justify-content: center;
-}
-
-/* Wrapper centré et largeur max */
+/* Wrapper spécifique à la page About */
 .aboutWrapper {
   width: 100%;
   max-width: 1000px;
@@ -23,35 +6,42 @@ main {
   gap: 24px;
 }
 
-/* Sections communes */
+/* Style des "Cartes" (Sections blanches) */
 .aboutWrapper section {
   background: #ffffff;
   border: 1px solid #efeff2;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 6px 18px rgba(10,10,10,0.04);
+  
+  /* Animation au survol */
+  transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
-/* Intro (titre + paragraphe d'accroche) */
+.aboutWrapper section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(10,10,10,0.06);
+}
+
+/* Intro */
 .aboutIntro h1 {
   font-size: 28px;
   margin-bottom: 8px;
 }
 
 .aboutIntro p {
-  margin: 0;
   color: #555;
   font-size: 15px;
 }
 
-/* Titres des sections */
+/* Titres H2 dans les sections */
 .aboutWrapper h2 {
   font-size: 20px;
   margin: 0 0 10px 0;
   color: #222;
 }
 
-/* Mission: texte + liste simple */
+/* Mission: liste */
 .aboutMission p {
   margin: 0 0 10px 0;
   color: #555;
@@ -61,7 +51,6 @@ main {
 .aboutMission ul {
   list-style: disc;
   padding-left: 20px;
-  margin: 0;
 }
 
 .aboutMission ul li {
@@ -71,7 +60,7 @@ main {
   font-size: 15px;
 }
 
-/* Valeurs: grille simple */
+/* Grille des Valeurs (Cards internes) */
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -93,12 +82,11 @@ main {
 }
 
 .valueCard p {
-  margin: 0;
   color: #555;
   font-size: 14px;
 }
 
-/* Partners / Team / Thanks text */
+/* Textes génériques des autres sections */
 .aboutPartners p,
 .aboutTeam p,
 .aboutThanks p {
@@ -107,28 +95,10 @@ main {
   font-size: 15px;
 }
 
-/* Em / strong simple styles */
-strong { color: #222; font-weight: 700; }
-em { color: #666; font-style: italic; }
-
-/* Small hover lift for sections (subtle and optional) */
-.aboutWrapper section {
-  transition: transform 150ms ease, box-shadow 150ms ease;
-}
-.aboutWrapper section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(10,10,10,0.06);
-}
-
-/* Responsive: empilement pour petits écrans */
+/* Responsive spécifique à About */
 @media (max-width: 800px) {
-
   .valuesGrid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  main {
-    padding: 20px 14px;
   }
 
   .aboutIntro h1 {
@@ -137,6 +107,9 @@ em { color: #666; font-style: italic; }
 }
 
 @media (max-width: 480px) {
+  .aboutWrapper {
+    gap: 16px;
+  }
 
   .valuesGrid {
     grid-template-columns: 1fr;
@@ -144,10 +117,6 @@ em { color: #666; font-style: italic; }
 
   .valueCard {
     min-height: auto;
-  }
-
-  .aboutWrapper {
-    gap: 16px;
   }
 
   .aboutIntro h1 {
