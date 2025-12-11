@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Connexion StuDiscover</title>
+    
     <link rel="stylesheet" href="/style/global.css" />
-    <link rel="stylesheet" href="/style/forms.css" />
+    <link rel="stylesheet" href="/style/auth/auth.css" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,30 +17,41 @@
   </head>
   <body>
     <%- include('../partials/header') %>
-    <main>
-      <section>
+    
+    <main class="auth-container">
+      
+      <section class="auth-card">
         <h2>Connexion</h2>
+        
         <% if (error) { %>
-        <p><%= error %></p>
+          <div class="alert error"><%= error %></div>
         <% } %>
+        
         <form method="post" action="/login">
-          <label>
+          <label class="form-group">
             Email
             <input
               type="email"
               name="email"
               required
               value="<%= values.email || '' %>"
+              placeholder="Ex: etudiant@uqac.ca"
             />
           </label>
-          <label>
+          
+          <label class="form-group">
             Mot de passe
-            <input type="password" name="password" required />
+            <input type="password" name="password" required placeholder="••••••••" />
           </label>
-          <button type="submit" class="btn-primary">Se connecter</button>
+          
+          <button type="submit" class="btn btn-primary btn-full">Se connecter</button>
         </form>
-        <p>Pas encore de compte ? <a href="/register">Créer un compte</a></p>
+        
+        <p class="auth-footer">
+          Pas encore de compte ? <a href="/register">Créer un compte</a>
+        </p>
       </section>
+      
     </main>
   </body>
 </html>
