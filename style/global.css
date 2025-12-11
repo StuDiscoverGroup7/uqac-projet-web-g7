@@ -1,27 +1,61 @@
+/* ===========================
+   RESET & BASE
+   =========================== */
 html,
 body {
-  margin: 0; /* Removes default margin */
-  padding: 0; /* Removes default padding */
-}
-
-html {
+  margin: 0;
+  padding: 0;
   height: 100%;
 }
+
 body {
+  /* On applique la police et les couleurs ici pour tout le site */
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #222;
+  background: #fff;
+  line-height: 1.5;
   min-height: 100%;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-p {
+/* ===========================
+   TYPOGRAPHIE GLOBALE
+   =========================== */
+h1, h2, h3, h4, h5, h6, ul, p {
   margin: 0;
 }
 
+strong {
+  color: #222;
+  font-weight: 700;
+}
+
+em {
+  color: #666;
+  font-style: italic;
+}
+
+/* ===========================
+   LAYOUT GLOBAL
+   =========================== */
+/* Un style par défaut pour <main> qui centre le contenu sur toutes les pages */
+main {
+  padding: 32px 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box; /* Important pour que le padding n'explose pas la largeur */
+}
+
+/* Responsive global pour le main */
+@media (max-width: 800px) {
+  main {
+    padding: 20px 14px;
+  }
+}
+
+/* ===========================
+   HEADER
+   =========================== */
 header {
   display: flex;
   align-items: center;
@@ -40,7 +74,7 @@ header nav ul {
   list-style: none;
   display: flex;
   gap: 1.25rem;
-  font-family: "Montserrat", sans-serif;
+  /* Font-family hérité du body maintenant, plus besoin de le répéter ici */
 }
 
 header nav a {
