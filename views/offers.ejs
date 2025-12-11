@@ -36,7 +36,6 @@
                 id="location"
                 name="location"
                 placeholder="Ex: Québec, Canada, Saguenay, etc."
-                required
               />
             </div>
             <div>
@@ -47,8 +46,18 @@
                 name="radius"
                 min="1"
                 value="5"
-                required
               />
+            </div>
+            <div>
+              <label for="type">Type d'offre :</label>
+              <select id="type" name="type">
+                <option value="">Tous les types</option>
+                <option value="reduction">Réduction</option>
+                <option value="job">Offre d'emploi</option>
+                <option value="stage">Stage</option>
+                <option value="promotion">Promotion</option>
+                <option value="evenement">Événement</option>
+              </select>
             </div>
             <button type="submit">Rechercher</button>
           </form>
