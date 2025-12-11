@@ -32,7 +32,14 @@
 
           <div class="form-group">
             <label for="type">Type</label>
-            <input type="text" id="type" name="type" value="<%= offer.type %>" required />
+            <select id="type" name="type" required>
+              <option value="">Sélectionner un type</option>
+              <option value="reduction" <%= offer.type === 'reduction' ? 'selected' : '' %>>Réduction</option>
+              <option value="job" <%= offer.type === 'job' ? 'selected' : '' %>>Offre d'emploi</option>
+              <option value="stage" <%= offer.type === 'stage' ? 'selected' : '' %>>Stage</option>
+              <option value="promotion" <%= offer.type === 'promotion' ? 'selected' : '' %>>Promotion</option>
+              <option value="evenement" <%= offer.type === 'evenement' ? 'selected' : '' %>>Événement</option>
+            </select>
           </div>
 
           <div class="form-group">

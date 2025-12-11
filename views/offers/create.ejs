@@ -4,54 +4,94 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Créer une offre - StuDiscover</title>
-    
+
     <link rel="stylesheet" href="/style/global.css" />
     <link rel="stylesheet" href="/style/offers/offer-form.css" />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <%- include('../partials/header') %>
-    
+
     <main class="main-content">
       <div class="form-card">
         <h1>Créer une offre</h1>
-        
+
         <% if (error) { %>
-          <div class="alert error"><%= error %></div>
+        <div class="alert error"><%= error %></div>
         <% } %>
 
         <form action="/offers" method="POST">
           <div class="form-group">
             <label for="title">Titre de l'offre</label>
-            <input type="text" id="title" name="title" placeholder="Ex: Stage développeur web" required />
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Ex: Stage développeur web"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="type">Type d'offre</label>
-            <input type="text" id="type" name="type" placeholder="Ex: job, stage, promo..." required />
+            <select id="type" name="type" required>
+              <option value="">Sélectionner un type</option>
+              <option value="reduction">Réduction</option>
+              <option value="job">Offre d'emploi</option>
+              <option value="stage">Stage</option>
+              <option value="promotion">Promotion</option>
+              <option value="evenement">Événement</option>
+            </select>
           </div>
 
           <div class="form-group">
             <label for="address">Adresse</label>
-            <input type="text" id="address" name="address" placeholder="Adresse complète" required />
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Adresse complète"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea id="description" name="description" rows="5" placeholder="Détails de l'offre..." required></textarea>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              placeholder="Détails de l'offre..."
+              required
+            ></textarea>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <label for="latitude">Latitude</label>
-              <input type="text" id="latitude" name="latitude" placeholder="Ex: 48.42 ou 48°N" required />
+              <input
+                type="text"
+                id="latitude"
+                name="latitude"
+                placeholder="Ex: 48.42 ou 48°N"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="longitude">Longitude</label>
-              <input type="text" id="longitude" name="longitude" placeholder="Ex: -71.06 ou 71°W" required />
+              <input
+                type="text"
+                id="longitude"
+                name="longitude"
+                placeholder="Ex: -71.06 ou 71°W"
+                required
+              />
             </div>
           </div>
 
