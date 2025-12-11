@@ -39,11 +39,12 @@ em {
    =========================== */
 /* Un style par défaut pour <main> qui centre le contenu sur toutes les pages */
 main {
-  padding: 32px 20px;
   display: flex;
   justify-content: center;
+  padding: 32px 20px;
   width: 100%;
-  box-sizing: border-box; /* Important pour que le padding n'explose pas la largeur */
+  box-sizing: border-box;
+  display: block;
 }
 
 /* Responsive global pour le main */
