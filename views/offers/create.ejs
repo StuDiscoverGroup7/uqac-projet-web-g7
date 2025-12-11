@@ -4,56 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Créer une offre - StuDiscover</title>
+    
     <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/offers/offer-form.css" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
   </head>
   <body>
     <%- include('../partials/header') %>
-    <main>
-      <h1>Créer une offre</h1>
-      <% if (error) { %>
-      <div class="error-message"><%= error %></div>
-      <% } %>
-      <form action="/offers" method="POST">
-        <div>
-          <label>Title:</label>
-          <input type="text" name="title" required />
-        </div>
-        <div>
-          <label>Type:</label>
-          <select name="type" required>
-            <option value="">Sélectionnez un type</option>
-            <option value="reduction">Réduction</option>
-            <option value="job">Offre d'emploi</option>
-            <option value="stage">Stage</option>
-            <option value="promotion">Promotion</option>
-            <option value="evenement">Événement</option>
-          </select>
-        </div>
-        <div>
-          <label>Address:</label>
-          <input type="text" name="address" required />
-        </div>
-        <div>
-          <label>Description:</label>
-          <textarea name="description" required></textarea>
-        </div>
-        <div>
-          <label>Latitude:</label>
-          <input type="number" step="any" name="latitude" required />
-        </div>
-        <div>
-          <label>Longitude:</label>
-          <input type="number" step="any" name="longitude" required />
-        </div>
-        <button type="submit">Créer l'offre</button>
-        <a href="/offers">Annuler</a>
-      </form>
+    <main class="main-content">
+      <div class="form-card">
+        <h1>Créer une offre</h1>
+        
+        <% if (error) { %>
+          <div class="alert error"><%= error %></div>
+        <% } %>
+
+        <form action="/offers" method="POST">
+          <div class="form-group">
+            <label for="title">Titre de l'offre</label>
+            <input type="text" id="title" name="title" placeholder="Ex: Stage développeur web" required />
+          </div>
+
+          <div class="form-group">
+            <label for="type">Type d'offre</label>
+            <input type="text" id="type" name="type" placeholder="Ex: job, stage, promo..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Adresse</label>
+            <input type="text" id="address" name="address" placeholder="Adresse complète" required />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" placeholder="Détails de l'offre..." required></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="latitude">Latitude</label>
+              <input type="number" step="any" id="latitude" name="latitude" placeholder="48.4284" required />
+            </div>
+            <div class="form-group">
+              <label for="longitude">Longitude</label>
+              <input type="number" step="any" id="longitude" name="longitude" placeholder="-71.0601" required />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Créer l'offre</button>
+            <a href="/my-offers" class="btn btn-secondary">Annuler</a>
+          </div>
+        </form>
+      </div>
     </main>
   </body>
 </html>
