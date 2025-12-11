@@ -129,16 +129,33 @@
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   color: white;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 10px;
+  font-size: 12px;
 }
 
-.jobOffer {
+.type-reduction {
+  background: rgb(236, 0, 0);
+}
+
+.type-job {
   background: rgb(31, 0, 236);
 }
 
-.promo {
-  background: rgb(236, 0, 0);
+.type-stage {
+  background: rgb(0, 150, 0);
+}
+
+.type-promotion {
+  background: rgb(255, 165, 0);
+}
+
+.type-evenement {
+  background: rgb(138, 43, 226);
+}
+
+.type-default {
+  background: rgb(128, 128, 128);
 }
 
 #offersList ul li p {
