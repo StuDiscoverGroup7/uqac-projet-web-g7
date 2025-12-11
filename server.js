@@ -69,16 +69,17 @@ app.get("/offers", async (req, res) => {
 
 // GET /offers/search - Rechercher des offres dans un rayon (PostGIS) ou par type
 app.get("/offers/search", async (req, res) => {
-  const { lat, lng, radius = 5000, type } = req.query;
+  const { lat, lng, radius, type } = req.query;
 
   try {
     let offers;
 
     // Si des coordonnées sont fournies, recherche géographique
-    if (lat && lng) {
+    if (lat && lng && lat.trim() !== "" && lng.trim() !== "") {
+      const defaultRadius = radius || 5000;
       const latitude = parseFloat(lat);
       const longitude = parseFloat(lng);
-      const radiusMeters = parseFloat(radius);
+      const radiusMeters = parseFloat(defaultRadius);
 
       if (isNaN(latitude) || isNaN(longitude) || isNaN(radiusMeters)) {
         return res.status(400).json({
@@ -92,7 +93,7 @@ app.get("/offers/search", async (req, res) => {
           SELECT 
             id,
             title,
-            type,
+            "type",
             address,
             description,
             latitude,
@@ -110,7 +111,7 @@ app.get("/offers/search", async (req, res) => {
             ST_MakePoint(${longitude}, ${latitude})::geography,
             ${radiusMeters}
           )
-          AND type = ${type}
+          AND "type" = ${type}
           ORDER BY distance ASC
         `;
       } else {
@@ -118,7 +119,7 @@ app.get("/offers/search", async (req, res) => {
           SELECT 
             id,
             title,
-            type,
+            "type",
             address,
             description,
             latitude,
@@ -157,8 +158,10 @@ app.get("/offers/search", async (req, res) => {
     res.json({ offers });
   } catch (err) {
     console.error("Erreur lors de la recherche d'offres:", err);
+    console.error("Paramètres reçus:", { lat, lng, radius, type });
     res.status(500).json({
       error: "Une erreur est survenue lors de la recherche",
+      details: err.message,
     });
   }
 });
